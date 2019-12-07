@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import java.io.OutputStream
 
 class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -64,5 +65,17 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     //clean the canvas
     fun Clean(): Unit{
         mCanvas.drawColor(Color.GRAY);
+        Log.e("touch", "clean.");
+    }
+
+    fun pencolorchange(changecolor : String)
+    {
+        Log.e("string", changecolor);
+        paint.setColor(Color.parseColor(changecolor));
+    }
+
+    fun test()
+    {
+        Log.e("touch", "red_button.");
     }
 }

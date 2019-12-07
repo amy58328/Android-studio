@@ -25,13 +25,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         clean_button.setOnClickListener(this)
+        red_button.setOnClickListener(this)
+        blue_button.setOnClickListener(this)
     }
 
+    //clean th button
     override fun onClick(v: View) {
+        //clean th button
         when (v.id) {
             clean_button.id -> layout_paint_board.Clean()
+            red_button.id -> layout_paint_board.pencolorchange("#FF0000")
+            blue_button.id -> layout_paint_board.pencolorchange("#0000FF")
         }
+
     }
+
 
 
 }
