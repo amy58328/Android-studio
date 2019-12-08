@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/side_nav_bar"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+       />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="#0097a7"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="24dp"
+                android:layout_marginStart="24dp"
+                android:paddingBottom="8dp"
+                android:text="您目前位於選單..."
+                android:textColor="#fff"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:text="購物車"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn1"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_green_light"
+                    android:drawableTop="@android:drawable/btn_star_big_on"
+                    android:padding="5dp" />
+
+                <Button
+                    android:text="訂單"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn2"
+                    android:layout_weight="1"
+                    android:drawableTop="@android:drawable/btn_star_big_on"
+                    android:background="@android:color/holo_green_light"
+                    android:padding="5dp" />
+
+                <Button
+                    android:text="全部商品"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn3"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_green_light"
+                    android:drawableTop="@android:drawable/btn_star_big_on"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:text="吹風機"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button3"
+                        android:background="@android:color/transparent" />
+
+                    <Button
+                        android:text="鍋子"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button2"
+                        android:background="@android:color/transparent" />
+
+                    <Button
+                        android:text="電風扇"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button"
+                        android:background="@android:color/transparent" />
+                </LinearLayout>
+
+                <Button
+                    android:text="返回"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn4"
+                    android:background="?android:attr/colorFocusedHighlight"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
