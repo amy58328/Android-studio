@@ -22,6 +22,7 @@ class game : AppCompatActivity() {
             intent.setClass(this@game, MainActivity::class.java)
             startActivity(intent)
         }
+        change_weight()
     }
 
     companion object {
@@ -41,7 +42,7 @@ class game : AppCompatActivity() {
         }
 
     }
-    fun setup(){
+    fun change_weight(){
         seek_bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
@@ -54,13 +55,9 @@ class game : AppCompatActivity() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext, "start tracking", Toast.LENGTH_SHORT).show()
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar) {
-                // Do something
-                Toast.makeText(applicationContext, "stop tracking", Toast.LENGTH_SHORT).show()
             }
         })
     }
