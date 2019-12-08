@@ -35,9 +35,9 @@ class game : AppCompatActivity() {
         {
             R.id.clean_button ->
                 layout_paint_board.Clean()
-            R.id.red_button ->
+            R.id.color_change_button ->
                 layout_paint_board.pencolorchange("#FF0000")
-            R.id.blue_button ->
+            R.id.weight_change_button ->
                 layout_paint_board.pencolorchange("#0000FF")
         }
 
