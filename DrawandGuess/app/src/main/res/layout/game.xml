@@ -89,24 +89,24 @@
         android:text="返回"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.567"
-        app:layout_constraintStart_toEndOf="@+id/layout_paint_board"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/Dialog_box"-->
-<!--        android:layout_width="290dp"-->
-<!--        android:layout_height="64dp"-->
-<!--        android:layout_marginStart="28dp"-->
-<!--        android:layout_marginLeft="28dp"-->
-<!--        android:background="@android:drawable/edit_text"-->
-<!--        android:hint="對話框"-->
-<!--        android:inputType="text"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/layout_paint_board"-->
-<!--        app:layout_constraintVertical_bias="0.128" />-->
+    <EditText
+        android:id="@+id/Dialog_box"
+        android:layout_width="212dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="對話框"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_paint_board"
+        app:layout_constraintVertical_bias="0.128" />
 
 <!--    <EditText-->
 <!--        android:hint="請輸入密碼"-->
