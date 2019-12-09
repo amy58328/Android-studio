@@ -124,7 +124,7 @@
         android:autoLink="web"
         android:background="#B97A56"
         android:gravity="center"
-        android:text="@string/test"
+        android:text="忘記密碼?"
         app:layout_constraintLeft_toRightOf="@id/button_box"
         app:layout_constraintTop_toTopOf="@id/button_box" />
     <Button

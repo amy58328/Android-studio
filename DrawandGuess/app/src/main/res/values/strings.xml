@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name"></string>
     <string name="buttonText">NORMAL</string>
-    <string name="test"><a href="C:\Users\88691\AndroidStudioProjects\app\src\main\res\layout">"忘記密碼?"</a></string>
-    <string name="test1"><a href="C:\Users\88691\AndroidStudioProjects\app\src\main\res\layout\create.xml">"註冊"</a></string>
-    <string name="test2"><a href="https://www.google.com.tw/">"返回"</a></string>
+
     <string name="title_activity_user1">user1</string>
     <string name="title_activity_creat">creat</string>
     <string name="title_activity_normal">normal</string>
@@ -16,8 +14,7 @@
     <string name="title_activity_base">activity_base</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nickname">nickname:</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">Main</string>

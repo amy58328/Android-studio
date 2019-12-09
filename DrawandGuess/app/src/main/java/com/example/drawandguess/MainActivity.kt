@@ -6,29 +6,38 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toolbar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 
 class MainActivity : AppCompatActivity() {
+
+    private var mAppBarConfiguration: AppBarConfiguration? = null
     private var button: Button? = null
     private var button1: Button? = null
     private var button2: Button? = null
     private var button3: Button? = null
     private var button4: Button? = null
     private var button5: Button? = null
-    private val toolbar: Toolbar? = null
+    private var button6: Button? = null
+    private val drawer: DrawerLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
-        button = findViewById<View>(R.id.side_menu_button) as Button
+        button = findViewById<View>(R.id.toolbar) as Button
         button1 = findViewById<View>(R.id.normal_button) as Button
         button2 = findViewById<View>(R.id.connect_button) as Button
         button3 = findViewById<View>(R.id.photo_button) as Button
         button4 = findViewById<View>(R.id.chart_button) as Button
         button5 = findViewById<View>(R.id.start_button) as Button
+        button6 = findViewById<View>(R.id.button_signout) as Button
 
-        val nextPageBtn = findViewById<View>(R.id.side_menu_button) as Button
+        val nextPageBtn = findViewById<View>(R.id.toolbar) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@MainActivity, user1::class.java)
+            intent.setClass(this@MainActivity,MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -62,14 +71,27 @@ class MainActivity : AppCompatActivity() {
             intent.setClass(this@MainActivity, game::class.java)
             startActivity(intent)
         }
+        val nextPageBtn6 = findViewById<View>(R.id.button_signout) as Button
+        nextPageBtn6.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity,user1::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+
 
     }
+
 
     companion object {
         val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
     }
 
 }
+
 
 
 
