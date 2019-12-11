@@ -13,7 +13,7 @@ class connect : AppCompatActivity() {
     private var button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.normal)
+        setContentView(R.layout.draw)
 
         button = findViewById<View>(R.id.button) as Button
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">DRAW AND GUESS</string>
     <string name="buttonText">NORMAL</string>
 
     <string name="title_activity_user1">user1</string>

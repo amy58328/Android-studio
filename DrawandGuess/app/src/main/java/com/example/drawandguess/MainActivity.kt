@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         button = findViewById<View>(R.id.toolbar) as Button
-        button1 = findViewById<View>(R.id.normal_button) as Button
-        button2 = findViewById<View>(R.id.connect_button) as Button
+        button1 = findViewById<View>(R.id.guess_button) as Button
+        button2 = findViewById<View>(R.id.draw_button) as Button
         button3 = findViewById<View>(R.id.photo_button) as Button
         button4 = findViewById<View>(R.id.chart_button) as Button
-        button5 = findViewById<View>(R.id.start_button) as Button
+        button5 = findViewById<View>(R.id.draw_and_guess_button) as Button
         button6 = findViewById<View>(R.id.button_signout) as Button
 
         val nextPageBtn = findViewById<View>(R.id.toolbar) as Button
@@ -41,13 +41,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val nextPageBtn1 = findViewById<View>(R.id.normal_button) as Button
+        val nextPageBtn1 = findViewById<View>(R.id.guess_button) as Button
         nextPageBtn1.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@MainActivity, normal::class.java)
+            intent.setClass(this@MainActivity,normal::class.java)
             startActivity(intent)
         }
-        val nextPageBtn2 = findViewById<View>(R.id.connect_button) as Button
+        val nextPageBtn2 = findViewById<View>(R.id.draw_button) as Button
         nextPageBtn2.setOnClickListener {
             val intent = Intent()
             intent.setClass(this@MainActivity, connect::class.java)
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             intent.setClass(this@MainActivity, charts::class.java)
             startActivity(intent)
         }
-        val nextPageBtn5 = findViewById<View>(R.id.start_button) as Button
+        val nextPageBtn5 = findViewById<View>(R.id.draw_and_guess_button) as Button
         nextPageBtn5.setOnClickListener {
             val intent = Intent()
             intent.setClass(this@MainActivity, game::class.java)

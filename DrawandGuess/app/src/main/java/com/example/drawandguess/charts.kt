@@ -13,7 +13,7 @@ class charts : AppCompatActivity() {
     private var button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.normal)
+        setContentView(R.layout.charts)
 
         button = findViewById<View>(R.id.button) as Button
 
