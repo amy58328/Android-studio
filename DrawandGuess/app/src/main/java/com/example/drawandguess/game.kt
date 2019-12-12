@@ -105,7 +105,7 @@ class game : AppCompatActivity() {
                 .setPositiveButton(R.string.confirm) { dialog, _ ->
                     if(singleChoiceIndex == 0) { // black
                         layout_paint_board.pencolorchange("#000000")
-                        color_button.setBackgroundResource(R.drawable.black_circle_button)
+                        color_button.setBackgroundResource(R.drawable.black_button)
 
                     }
                     else if(singleChoiceIndex == 1){ // red

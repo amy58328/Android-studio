@@ -78,7 +78,7 @@ class connect : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Title is empty", Toast.LENGTH_SHORT).show()
                     }
                     else{
-                        saveClickHandler()
+                        saveClickHandler(title)
                         Toast.makeText(applicationContext,"your title is " + title, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -129,7 +129,7 @@ class connect : AppCompatActivity() {
                 .setPositiveButton(R.string.confirm) { dialog, _ ->
                     if(singleChoiceIndex == 0) { // black
                         layout_paint_board.pencolorchange("#000000")
-                        color_button.setBackgroundResource(R.drawable.black_circle_button)
+                        color_button.setBackgroundResource(R.drawable.black_button)
                     }
                     else if(singleChoiceIndex == 1){ // red
                         layout_paint_board.pencolorchange("#FF0000")
@@ -162,31 +162,23 @@ class connect : AppCompatActivity() {
         }
     }
 
-    private fun saveClickHandler(){
+    private fun saveClickHandler(title: String){
         if(checkWritable()){
             try {
-                val path = Environment.getExternalStorageState().toString()
-                val file = File(path,"${UUID.randomUUID()}.jpg")
-//                val fileName = (System.currentTimeMillis() / 1000).toString() + ".jpg"
-//                val file = File(fileName)
+                val fileName = title + ".jpg"
+                val file = File(Environment.getExternalStorageDirectory(), fileName)
                 val stream = FileOutputStream(file)
                 layout_paint_board.saveBitmap(stream)
-                stream.flush()
                 stream.close()
-
-                val intent = Intent()
-                intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
-                intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()))
-                sendBroadcast(intent)
 
                 Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
 
             } catch(e:Exception) {
                 println(e)
                 Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
+
             }
         }
-
 
     }
 }
