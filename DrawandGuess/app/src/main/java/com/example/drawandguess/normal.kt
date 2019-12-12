@@ -16,18 +16,14 @@ class normal : AppCompatActivity() {
         setContentView(R.layout.normal)
 
 
-        button = findViewById<View>(R.id.button) as Button
+        button = findViewById<View>(R.id.goback_button) as Button
 
-        val nextPageBtn = findViewById<View>(R.id.button) as Button
+        val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
             intent.setClass(this@normal, MainActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    companion object {
-        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
     }
 
 

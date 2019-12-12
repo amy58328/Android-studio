@@ -33,6 +33,7 @@
     <string name="color_black">black</string>
     <string name="color_yellow">yellow</string>
     <string name="confirm">confirm</string>
+    <string name="title_activity_guess" />
 
 </resources>
 

@@ -50,6 +50,8 @@ class game : AppCompatActivity() {
                 layout_paint_board.Clean()
             R.id.color_button -> change_color()
             R.id.weight_button -> change_weight()
+            R.id.eraser_button -> {layout_paint_board.pencolorchange("#FFFFFF")
+            Toast.makeText(this@game, "you choose the eraser", Toast.LENGTH_SHORT).show()}
 
         }
 

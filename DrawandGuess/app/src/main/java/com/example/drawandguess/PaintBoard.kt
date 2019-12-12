@@ -27,7 +27,7 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
         // Canvas
         mCanvas = Canvas(bitmap)
-        mCanvas.drawColor(Color.GRAY)
+        mCanvas.drawColor(Color.WHITE)
 
         // Paint
         paint = Paint()
@@ -67,7 +67,7 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     //clean the canvas
     fun Clean(): Unit{
-        mCanvas.drawColor(Color.GRAY);
+        mCanvas.drawColor(Color.WHITE);
         Log.e("touch", "clean.");
     }
 
