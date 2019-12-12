@@ -81,4 +81,9 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     {
         paint.setStrokeWidth(i.toFloat())
     }
+
+    @SuppressLint("WrongThread")
+    fun saveBitmap(stream: OutputStream) {
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+    }
 }

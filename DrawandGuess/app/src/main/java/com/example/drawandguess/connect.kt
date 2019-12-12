@@ -1,15 +1,23 @@
 package com.example.drawandguess
 
+import android.Manifest
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.SeekBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import kotlinx.android.synthetic.main.game.*
+import java.io.File
+import java.io.FileOutputStream
+import java.util.*
 
 
 class connect : AppCompatActivity() {
@@ -52,9 +60,29 @@ class connect : AppCompatActivity() {
             R.id.weight_button -> change_weight()
             R.id.eraser_button -> {layout_paint_board.pencolorchange("#FFFFFF")
                 Toast.makeText(this@connect, "you choose the eraser", Toast.LENGTH_SHORT).show()}
+            R.id.save_button -> check()
 
         }
 
+    }
+
+    private  fun check(){
+    val item = LayoutInflater.from(this@connect).inflate(R.layout.connect_enter_title, null)
+    AlertDialog.Builder(this@connect)
+                .setTitle("Save")
+                .setView(item)
+                .setPositiveButton("save"){_,_->
+                    val ediText = item.findViewById(R.id.enter_title_button) as EditText
+                    val title = ediText.text.toString()
+                    if(TextUtils.isEmpty(title)){
+                        Toast.makeText(applicationContext, "Title is empty", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        saveClickHandler()
+                        Toast.makeText(applicationContext,"your title is " + title, Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .show()
     }
 
     var size = 10
@@ -85,11 +113,7 @@ class connect : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar) {
             }
         })
-
-
-
         popDialog.setPositiveButton("OK"){dialog, _ ->
-            //            Toast.makeText(this@game, "你選擇的是" + color_list[singleChoiceIndex], Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         popDialog.create()
@@ -106,7 +130,6 @@ class connect : AppCompatActivity() {
                     if(singleChoiceIndex == 0) { // black
                         layout_paint_board.pencolorchange("#000000")
                         color_button.setBackgroundResource(R.drawable.black_circle_button)
-
                     }
                     else if(singleChoiceIndex == 1){ // red
                         layout_paint_board.pencolorchange("#FF0000")
@@ -128,7 +151,42 @@ class connect : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
-
     }
 
+    private fun checkWritable():Boolean {
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),0)
+            return false
+        } else {
+            return true
+        }
+    }
+
+    private fun saveClickHandler(){
+        if(checkWritable()){
+            try {
+                val path = Environment.getExternalStorageState().toString()
+                val file = File(path,"${UUID.randomUUID()}.jpg")
+//                val fileName = (System.currentTimeMillis() / 1000).toString() + ".jpg"
+//                val file = File(fileName)
+                val stream = FileOutputStream(file)
+                layout_paint_board.saveBitmap(stream)
+                stream.flush()
+                stream.close()
+
+                val intent = Intent()
+                intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+                intent.setData(Uri.fromFile(Environment.getExternalStorageDirectory()))
+                sendBroadcast(intent)
+
+                Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+
+            } catch(e:Exception) {
+                println(e)
+                Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    }
 }
