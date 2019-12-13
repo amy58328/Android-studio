@@ -21,11 +21,15 @@ import androidx.core.app.ComponentActivity
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import android.widget.EditText
+import android.widget.TextView
 
 
 class MainActivity: AppCompatActivity() {
     //宣告
+    private var btn: Button? = null
+    private var textViewMessage: TextView? = null
+    private var editTextMessage: EditText? = null
     private var mImg: ImageView? = null
     private var mPhone: DisplayMetrics? = null
     private var button: Button? = null
@@ -40,6 +44,12 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+
+        textViewMessage = findViewById<View>(R.id.textView) as TextView
+        textViewMessage!!.text = "NICKNAME "
+        editTextMessage = findViewById<View>(R.id.name) as EditText
+        btn = findViewById<View>(R.id.enter_name) as Button
+        btn!!.setOnClickListener { textViewMessage!!.text = "     " + editTextMessage!!.text.toString() }
         //讀取手機解析度
         mPhone = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(mPhone)
@@ -72,12 +82,6 @@ class MainActivity: AppCompatActivity() {
         button5 = findViewById<View>(R.id.draw_and_guess_button) as Button
         button6 = findViewById<View>(R.id.button_signout) as Button
 
-        val nextPageBtn = findViewById<View>(R.id.toolbar) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@MainActivity,MainActivity::class.java)
-            startActivity(intent)
-        }
 
         val nextPageBtn1 = findViewById<View>(R.id.guess_button) as Button
         nextPageBtn1.setOnClickListener {

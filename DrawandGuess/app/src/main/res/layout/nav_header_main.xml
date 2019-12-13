@@ -28,22 +28,21 @@
             android:layout_width="89dp"
             android:layout_height="20dp"
             android:gravity="left"
-            android:text="@string/nickname"
             app:layout_constraintTop_toTopOf="@id/photo" />
 
 
     </LinearLayout>
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
 
 
         <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <ScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" >
@@ -53,6 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
+
 
                     <Button
                         android:text="setting"
@@ -80,24 +80,15 @@
                         android:layout_width="match_parent"
                         android:gravity="center"
                         android:text="開啟音效" />
+
+
                     <Button
                         android:text="3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button6"
+                        android:id="@+id/button8"
                         android:background="@android:color/transparent" />
-                    <Button
-                        android:text="3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/button7"
-                        android:background="@android:color/transparent" />
-                    <Button
-                    android:text="3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button8"
-                    android:background="@android:color/transparent" />
+
                     <Button
                         android:text="3"
                         android:layout_width="match_parent"
@@ -105,17 +96,40 @@
                         android:id="@+id/button9"
                         android:background="@android:color/transparent" />
                     <Button
-                    android:text="3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button10"
-                    android:background="@android:color/transparent" />
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button10"
+                        android:background="@android:color/transparent" />
                     <Button
-                    android:text="3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/button11"
-                    android:background="@android:color/transparent" />
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button11"
+                        android:background="@android:color/transparent" />
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:hint="請輸入暱稱"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:paddingTop="0dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"/>
+
+
+                    <Button
+                        android:id="@+id/enter_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape"
+                        android:text="輸入"
+                        android:layout_gravity="center"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        />
 
 
 
@@ -132,17 +146,17 @@
         android:orientation="vertical">
 
 
-                <Button
-                    android:text="sign out"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_gravity="bottom"
-                    android:id="@+id/button_signout"
-                    android:background="@drawable/enter"
-                    android:textSize="18sp" />
+        <Button
+            android:text="sign out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:id="@+id/button_signout"
+            android:background="@drawable/enter"
+            android:textSize="18sp" />
 
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 
 
