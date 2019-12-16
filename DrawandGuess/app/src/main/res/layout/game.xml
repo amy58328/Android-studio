@@ -100,4 +100,5 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_paint_board"
         app:srcCompat="@drawable/eraser" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
