@@ -10,6 +10,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="500dp"
         android:layout_height="150dp"
         android:background="@drawable/rectangle"
@@ -103,6 +104,21 @@
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="@id/button_box"
         app:layout_constraintTop_toTopOf="@id/button_box" />
+
+    <TextView
+        android:id="@+id/post_text"
+        android:layout_width="225dp"
+        android:layout_height="52dp"
+        android:background="#FFFFFF"
+        android:text="text"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.898"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/register"

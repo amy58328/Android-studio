@@ -17,7 +17,7 @@ import org.json.JSONObject
 
 
 class MainActivity : AppCompatActivity() {
-    private var jsonArray:JsonObjectRequest?=null
+    private var jsonobject:JsonObjectRequest?=null
     private  val strurl = "http://140.136.149.224:3000/user/login"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         json.put("Password",password.text.toString())
 
 
-        jsonArray = JsonObjectRequest(
+        jsonobject = JsonObjectRequest(
             Request.Method.POST,strurl,json,
             object: Response.Listener<JSONObject> {
                 override fun onResponse(response: JSONObject?) {
@@ -51,13 +51,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+        Volley.newRequestQueue(this).add(jsonobject)
     }
 
 
-    fun prc_getmessage(v: View?) { //將getRequest物件加入Volley物件的queue中，執行跟API的溝通。
-        new_request()
-        Volley.newRequestQueue(this).add(jsonArray)
-
+    fun click(v: View) { //將getRequest物件加入Volley物件的queue中，執行跟API的溝通。
+        when(v.id)
+        {
+            R.id.get_button -> new_request()
+        }
     }
 
 }
