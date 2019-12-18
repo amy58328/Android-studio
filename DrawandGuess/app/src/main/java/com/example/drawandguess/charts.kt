@@ -20,7 +20,7 @@ class charts : AppCompatActivity() {
         val nextPageBtn = findViewById<View>(R.id.button) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@charts, MainActivity::class.java)
+            intent.setClass(this@charts, Maininterface::class.java)
             startActivity(intent)
         }
     }

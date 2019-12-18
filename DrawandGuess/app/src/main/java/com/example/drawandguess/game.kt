@@ -21,8 +21,6 @@ class game : AppCompatActivity() {
     private var button: Button? = null
     private lateinit var color_list: List<String>
     // 跟後端連結的宣告
-    private var objqueue: RequestQueue? = null
-    private  var getRequest: StringRequest? = null
     private  val strurl = "http://140.136.149.224:3000/subject"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,21 +32,21 @@ class game : AppCompatActivity() {
         val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@game, MainActivity::class.java)
+            intent.setClass(this@game, Maininterface::class.java)
             startActivity(intent)
         }
 
         initData()
         newrequest()
-        objqueue!!.add(getRequest)
+
     }
 
 
     fun newrequest()
     {
         var lbl_result = findViewById(R.id.subject) as TextView
-        objqueue = Volley.newRequestQueue(this)
-        getRequest =
+        val objqueue = Volley.newRequestQueue(this)
+       val getRequest =
                 StringRequest(strurl, Response.Listener { response ->
                     //response，表示是回傳值，就是API要回傳的字串，也可以是JSON字串。
                     lbl_result.setText("subject:" + response)
@@ -56,6 +54,7 @@ class game : AppCompatActivity() {
                     //如果發生錯誤，就是回傳VolleyError，可以顯示是什麼錯誤。
                     lbl_result.text = error.message
                 })
+        objqueue!!.add(getRequest)
     }
     private fun initData()
     {

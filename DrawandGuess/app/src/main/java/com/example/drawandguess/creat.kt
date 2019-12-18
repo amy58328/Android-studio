@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -19,10 +20,29 @@ class creat : AppCompatActivity() {
         textView = findViewById<View>(R.id.test) as TextView
 
         val nextPageBtn = findViewById<View>(R.id.test) as TextView
+
         nextPageBtn.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@creat, user1::class.java)
+            intent.setClass(this@creat, MainActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    fun click(v:View)
+    {
+        when(v.id)
+        {
+            R.id.correct ->{
+                val intent = Intent()
+                intent.setClass(this@creat, MainActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.cancel->{
+                val intent = Intent()
+                intent.setClass(this@creat, MainActivity::class.java)
+                startActivity(intent)
+            }
+
         }
     }
 

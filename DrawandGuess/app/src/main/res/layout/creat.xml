@@ -7,7 +7,7 @@
     android:background="#B97A56"
 
 
-    tools:context=".MainActivity">
+    tools:context=".creat">
 
 
     <TextView
@@ -107,28 +107,30 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/correct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape"
         android:text="確定"
+        android:onClick="click"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="@id/button_box"
         app:layout_constraintTop_toTopOf="@id/button_box" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape"
         android:text="取消"
+        android:onClick="click"
         android:textColor="#ffffff"
         android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintLeft_toRightOf="@id/correct"
         app:layout_constraintTop_toTopOf="@id/button_box" />
 
     <TextView

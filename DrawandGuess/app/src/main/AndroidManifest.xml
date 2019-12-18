@@ -46,13 +46,13 @@
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".creat"
-            android:label="@string/title_activity_creat"
+            android:name=".Maininterface"
+            android:label="@string/title_activity_normal"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".user1"
-            android:label="@string/title_activity_user1"
+            android:name=".creat"
+            android:label="@string/title_activity_creat"
             android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

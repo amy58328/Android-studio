@@ -33,7 +33,7 @@ class connect : AppCompatActivity() {
         val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
-            intent.setClass(this@connect, MainActivity::class.java)
+            intent.setClass(this@connect, Maininterface::class.java)
             startActivity(intent)
         }
 

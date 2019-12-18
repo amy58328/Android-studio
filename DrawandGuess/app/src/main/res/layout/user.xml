@@ -92,28 +92,30 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape"
         android:text="登入"
+        android:onClick="click"
         android:textColor="#ffffff"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="@id/button_box"
         app:layout_constraintTop_toTopOf="@id/button_box" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/shape"
         android:text="註冊"
+        android:onClick="click"
         android:textColor="#ffffff"
         android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/button1"
+        app:layout_constraintLeft_toRightOf="@id/login"
         app:layout_constraintTop_toTopOf="@id/button_box" />
 
     <TextView
