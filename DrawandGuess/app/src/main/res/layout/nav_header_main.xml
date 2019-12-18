@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/side_nav_bar"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="116dp"
+        android:background="#3f51b5"
+        android:gravity="bottom"
+
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="121dp"
+            android:layout_height="match_parent" />
+
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="89dp"
+            android:layout_height="20dp"
+            android:gravity="left"
+            app:layout_constraintTop_toTopOf="@id/photo" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
+                    <Button
+                        android:text="setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_menu_manage"
+                        android:id="@+id/button"
+                        android:background="@android:color/transparent" />
+
+                    <Button
+                        android:id="@+id/photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="相簿"
+                        android:background="@android:color/transparent" />
+
+                    <Button
+                        android:id="@+id/camera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="相機"
+                        android:background="@android:color/transparent" />
+                    <CheckBox
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:text="開啟音效" />
+
+
+                    <Button
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button8"
+                        android:background="@android:color/transparent" />
+
+                    <Button
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button9"
+                        android:background="@android:color/transparent" />
+                    <Button
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button10"
+                        android:background="@android:color/transparent" />
+                    <Button
+                        android:text="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button11"
+                        android:background="@android:color/transparent" />
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp"
+                        android:hint="請輸入暱稱"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:paddingTop="0dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"/>
+
+
+                    <Button
+                        android:id="@+id/enter_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape"
+                        android:text="輸入"
+                        android:layout_gravity="center"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp"
+                        />
+
+
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+
+        <Button
+            android:text="sign out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:id="@+id/button_signout"
+            android:background="@drawable/enter"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</LinearLayout>
+
+
