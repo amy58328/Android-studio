@@ -2,7 +2,6 @@ package com.example.drawandguess
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.SeekBar
@@ -10,20 +9,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.game.*
 
 
 class game : AppCompatActivity() {
     private var button: Button? = null
     private lateinit var color_list: List<String>
-    // 跟後端連結的宣告
-    private var objqueue: RequestQueue? = null
-    private  var getRequest: StringRequest? = null
-    private  val strurl = "http://140.136.149.224:3000/subject"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,24 +30,8 @@ class game : AppCompatActivity() {
         }
 
         initData()
-        newrequest()
-        objqueue!!.add(getRequest)
     }
 
-
-    fun newrequest()
-    {
-        var lbl_result = findViewById(R.id.subject) as TextView
-        objqueue = Volley.newRequestQueue(this)
-        getRequest =
-                StringRequest(strurl, Response.Listener { response ->
-                    //response，表示是回傳值，就是API要回傳的字串，也可以是JSON字串。
-                    lbl_result.setText("subject:" + response)
-                }, Response.ErrorListener { error ->
-                    //如果發生錯誤，就是回傳VolleyError，可以顯示是什麼錯誤。
-                    lbl_result.text = error.message
-                })
-    }
     private fun initData()
     {
         color_list = listOf( getString(R.string.color_black),

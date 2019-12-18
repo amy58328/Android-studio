@@ -13,12 +13,12 @@ class normal : AppCompatActivity() {
     private var button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.guess)
+        setContentView(R.layout.normal)
 
 
-        button = findViewById<View>(R.id.button) as Button
+        button = findViewById<View>(R.id.goback_button) as Button
 
-        val nextPageBtn = findViewById<View>(R.id.button) as Button
+        val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
         nextPageBtn.setOnClickListener {
             val intent = Intent()
             intent.setClass(this@normal, MainActivity::class.java)

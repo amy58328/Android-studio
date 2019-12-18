@@ -6,6 +6,18 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import org.json.JSONObject;
+import android.app.Activity;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Log;
+import android.graphics.Typeface
 
 import android.os.Bundle
 import android.provider.MediaStore
@@ -17,17 +29,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 import java.io.FileNotFoundException
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.util.Log
+
 import android.widget.EditText
 import android.widget.TextView
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 
 
 class MainActivity: AppCompatActivity() {
@@ -37,17 +41,33 @@ class MainActivity: AppCompatActivity() {
     private var editTextMessage: EditText? = null
     private var mImg: ImageView? = null
     private var mPhone: DisplayMetrics? = null
+    private var button: Button? = null
+    private var button1: Button? = null
+    private var button2: Button? = null
+    private var button3: Button? = null
+    private var button4: Button? = null
+    private var button5: Button? = null
+    private var button6: Button? = null
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        //val textView1 = findViewById(R.id.TextView) as TextView
+
+
+        //textView1.setTypeface(Typeface.createFromAsset(assets, "fonts/toroman.ttf"))
 
         textViewMessage = findViewById<View>(R.id.textView) as TextView
         textViewMessage!!.text = "NICKNAME "
         editTextMessage = findViewById<View>(R.id.name) as EditText
         btn = findViewById<View>(R.id.enter_name) as Button
         btn!!.setOnClickListener { textViewMessage!!.text = "     " + editTextMessage!!.text.toString() }
+
+
         //讀取手機解析度
         mPhone = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(mPhone)
@@ -72,24 +92,52 @@ class MainActivity: AppCompatActivity() {
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, PHOTO)
         }
+        button = findViewById<View>(R.id.toolbar) as Button
+        button1 = findViewById<View>(R.id.guess_button) as Button
+        button2 = findViewById<View>(R.id.draw_button) as Button
+        button3 = findViewById<View>(R.id.photo_button) as Button
+        button4 = findViewById<View>(R.id.chart_button) as Button
+        button5 = findViewById<View>(R.id.draw_and_guess_button) as Button
+        button6 = findViewById<View>(R.id.button_signout) as Button
 
-    }
 
 
-
-    // button click 之後的行為
-    fun click(v:View){
-        val intent = Intent()
-        when(v.id)
-        {
-            R.id.button_signout-> intent.setClass(this@MainActivity,user1::class.java)
-            R.id.draw_and_guess_button ->intent.setClass(this@MainActivity, game::class.java)
-            R.id.chart_button -> intent.setClass(this@MainActivity, charts::class.java)
-            R.id.photo -> intent.setClass(this@MainActivity, photo::class.java)
-            R.id.draw_button ->intent.setClass(this@MainActivity, connect::class.java)
-            R.id.guess_button -> intent.setClass(this@MainActivity,normal::class.java)
+        val nextPageBtn1 = findViewById<View>(R.id.guess_button) as Button
+        nextPageBtn1.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity,normal::class.java)
+            startActivity(intent)
         }
-        startActivity(intent)
+        val nextPageBtn2 = findViewById<View>(R.id.draw_button) as Button
+        nextPageBtn2.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity, connect::class.java)
+            startActivity(intent)
+        }
+        val nextPageBtn3 = findViewById<View>(R.id.photo_button) as Button
+        nextPageBtn3.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity, photo::class.java)
+            startActivity(intent)
+        }
+        val nextPageBtn4 = findViewById<View>(R.id.chart_button) as Button
+        nextPageBtn4.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity, charts::class.java)
+            startActivity(intent)
+        }
+        val nextPageBtn5 = findViewById<View>(R.id.draw_and_guess_button) as Button
+        nextPageBtn5.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity, game::class.java)
+            startActivity(intent)
+        }
+        val nextPageBtn6 = findViewById<View>(R.id.button_signout) as Button
+        nextPageBtn6.setOnClickListener {
+            val intent = Intent()
+            intent.setClass(this@MainActivity,user1::class.java)
+            startActivity(intent)
+        }
     }
 
     //拍照完畢或選取圖片後呼叫此函式

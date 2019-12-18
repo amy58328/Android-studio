@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class photo : AppCompatActivity() {
     private var button: Button? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.photo)

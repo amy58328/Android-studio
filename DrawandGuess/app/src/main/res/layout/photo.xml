@@ -10,8 +10,6 @@
     tools:context=".MainActivity">
 
 
-
-
     <Button
         android:id="@+id/button"
         android:layout_width="64dp"
@@ -19,14 +17,104 @@
         android:background="@drawable/ring"
         android:text="返回"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <TextView
+        android:id="@+id/photo_title"
+        android:layout_width="490dp"
+        android:layout_height="100dp"
+        android:background="#B97A56"
+        android:text="PHOTO"
+        android:textSize="50dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/photo_scrollview"
+        android:layout_width="245dp"
+        android:layout_height="245dp"
+
+        android:background="#ffffff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photo_title">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/photo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo1"
+                android:background="@android:color/transparent" />
+            <Button
+                android:id="@+id/photo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo2"
+                android:background="@android:color/transparent" />
+
+            <Button
+                android:id="@+id/photo3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo3"
+                android:background="@android:color/transparent" />
+
+            <Button
+                android:id="@+id/photo4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo4"
+                android:background="@android:color/transparent" />
+            <Button
+                android:id="@+id/photo5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo5"
+                android:background="@android:color/transparent" />
+            <Button
+                android:id="@+id/photo6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="photo6"
+                android:background="@android:color/transparent" />
 
 
 
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/view"
+        android:layout_width="245dp"
+        android:layout_height="245dp"
+        android:background="#ffffff"
+
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintLeft_toRightOf="@+id/photo_scrollview"
+        app:layout_constraintTop_toBottomOf="@+id/photo_title"
+        app:layout_constraintVertical_bias="0.397" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
