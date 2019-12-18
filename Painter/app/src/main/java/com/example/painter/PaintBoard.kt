@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 import java.io.OutputStream
 
 class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -16,8 +15,9 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var bitmap: Bitmap
     private var mCanvas: Canvas
 
-    private var startX:Float = 0f
-    private var startY:Float = 0f
+
+    private var startX: Float = 0f
+    private var startY: Float = 0f
 
     init {
         // bitmap
@@ -26,12 +26,13 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
         // Canvas
         mCanvas = Canvas(bitmap)
-        mCanvas.drawColor(Color.GRAY)
+        mCanvas.drawColor(Color.WHITE)
 
         // Paint
         paint = Paint()
         paint.setColor(Color.BLACK)
-        paint.setStrokeWidth(10f)
+
+        paint.setStrokeWidth(30F)
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -56,6 +57,7 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
                 startY = event.y
 
                 // call onDraw
+
                 invalidate()
             }
         }
@@ -63,19 +65,22 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     //clean the canvas
-    fun Clean(): Unit{
-        mCanvas.drawColor(Color.GRAY);
+    fun Clean(): Unit {
+        mCanvas.drawColor(Color.WHITE);
         Log.e("touch", "clean.");
     }
 
-    fun pencolorchange(changecolor : String)
-    {
+    fun pencolorchange(changecolor: String) {
         Log.e("string", changecolor);
         paint.setColor(Color.parseColor(changecolor));
     }
 
-    fun test()
-    {
-        Log.e("touch", "red_button.");
+    fun pen_size_change(i: Int) {
+        paint.setStrokeWidth(i.toFloat())
+    }
+
+    @SuppressLint("WrongThread")
+    fun saveBitmap(stream: OutputStream) {
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
     }
 }
