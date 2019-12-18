@@ -10,11 +10,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class charts : AppCompatActivity() {
-    private var button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.charts)
 
+<<<<<<< HEAD
         button = findViewById<View>(R.id.button) as Button
 
         val nextPageBtn = findViewById<View>(R.id.button) as Button
@@ -23,10 +23,20 @@ class charts : AppCompatActivity() {
             intent.setClass(this@charts, MainActivity::class.java)
             startActivity(intent)
         }
+=======
+>>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
     }
 
-    companion object {
-        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
+    fun click(v:View)
+    {
+        when(v.id)
+        {
+            R.id.goback_button ->{
+                val intent = Intent()
+                intent.setClass(this@charts, Maininterface::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
 

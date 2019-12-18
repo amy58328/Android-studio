@@ -37,6 +37,7 @@ tools:context=".MainActivity">
     android:gravity="center"
     android:text="GUESS"
     android:textSize="30dp"
+    android:onClick="click"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintHorizontal_bias="0.18"
     app:layout_constraintLeft_toLeftOf="parent"
@@ -54,6 +55,7 @@ tools:context=".MainActivity">
     android:gravity="center"
     android:text="DRAW"
     android:textSize="25dp"
+    android:onClick="click"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintHorizontal_bias="0.855"
     app:layout_constraintLeft_toLeftOf="parent"
@@ -73,6 +75,7 @@ tools:context=".MainActivity">
     android:gravity="center"
     android:text="PHOTO"
     android:textSize="30dp"
+    android:onClick="click"
     app:layout_constraintHorizontal_bias="0.18"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
@@ -87,6 +90,7 @@ tools:context=".MainActivity">
     android:background="@drawable/rectangle2"
     android:drawableRight="@mipmap/charts"
     android:gravity="center"
+    android:onClick="click"
     android:text="CHARTS"
     android:textSize="30dp"
     app:layout_constraintHorizontal_bias="0.855"
@@ -94,7 +98,6 @@ tools:context=".MainActivity">
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="@id/draw_button"
     app:layout_constraintTop_toBottomOf="parent"
-
     />
 
 <Button
@@ -107,6 +110,7 @@ tools:context=".MainActivity">
     android:text="DRAW AND GUESS"
     android:textColor="#AA0000"
     android:textSize="30dp"
+    android:onClick="click"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.528"
@@ -118,27 +122,30 @@ tools:context=".MainActivity">
     />
 
 <Button
-
     app:popupTheme="@style/AppTheme.PopupOverlay"
     android:id="@+id/toolbar"
     android:layout_width="64dp"
     android:layout_height="80dp"
     android:background="@drawable/ring"
     android:text=""
+    android:onClick="click"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.0"
-
-
     />
 
-
-
-
-
-
-
+    <TextView
+        android:id="@+id/post_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.611" />
 </androidx.constraintlayout.widget.ConstraintLayout>

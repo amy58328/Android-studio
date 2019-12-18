@@ -21,12 +21,12 @@ import java.util.*
 
 
 class connect : AppCompatActivity() {
-    private var button: Button? = null
     private lateinit var color_list: List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connect)
+<<<<<<< HEAD
 
         button = findViewById<View>(R.id.goback_button) as Button
 
@@ -37,6 +37,8 @@ class connect : AppCompatActivity() {
             startActivity(intent)
         }
 
+=======
+>>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
         initData()
     }
 
@@ -61,6 +63,11 @@ class connect : AppCompatActivity() {
             R.id.eraser_button -> {layout_paint_board.pencolorchange("#FFFFFF")
                 Toast.makeText(this@connect, "you choose the eraser", Toast.LENGTH_SHORT).show()}
             R.id.save_button -> check()
+            R.id.goback_button -> {
+                val intent = Intent()
+                intent.setClass(this@connect, Maininterface::class.java)
+                startActivity(intent)
+            }
 
         }
 

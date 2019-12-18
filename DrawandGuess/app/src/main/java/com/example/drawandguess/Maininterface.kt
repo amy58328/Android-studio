@@ -1,37 +1,24 @@
 package com.example.drawandguess
 
-
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
-
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-
 import androidx.appcompat.app.AppCompatActivity
-
 import java.io.FileNotFoundException
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
-<<<<<<< HEAD
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 
 
-class MainActivity: AppCompatActivity() {
+class Maininterface : AppCompatActivity() {
     //宣告
     private var btn: Button? = null
     private var textViewMessage: TextView? = null
@@ -39,19 +26,6 @@ class MainActivity: AppCompatActivity() {
     private var mImg: ImageView? = null
     private var mPhone: DisplayMetrics? = null
 
-=======
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
-import org.json.JSONObject
-
-class MainActivity : AppCompatActivity() {
-    private var jsonArray: JsonObjectRequest?=null
-    private  val strurl = "http://140.136.149.224:3000/user/login"
-
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -77,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     value)
             val intent = Intent("android.media.action.IMAGE_CAPTURE")
             intent.putExtra(MediaStore.EXTRA_OUTPUT, uri!!.path)
-            startActivityForResult(intent, CAMERA)
+//            startActivityForResult(intent, CAMERA)
         }
 
         mPhoto.setOnClickListener {
@@ -89,20 +63,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-<<<<<<< HEAD
 
 
-    // button click 之後的行為
+//    // button click 之後的行為
     fun click(v:View){
         val intent = Intent()
         when(v.id)
         {
-            R.id.button_signout-> intent.setClass(this@MainActivity,user1::class.java)
-            R.id.draw_and_guess_button ->intent.setClass(this@MainActivity, game::class.java)
-            R.id.chart_button -> intent.setClass(this@MainActivity, charts::class.java)
-            R.id.photo -> intent.setClass(this@MainActivity, photo::class.java)
-            R.id.draw_button ->intent.setClass(this@MainActivity, connect::class.java)
-            R.id.guess_button -> intent.setClass(this@MainActivity,normal::class.java)
+            R.id.button_signout->  intent.setClass(this@Maininterface,MainActivity::class.java)
+            R.id.draw_and_guess_button ->intent.setClass(this@Maininterface, game::class.java)
+            R.id.chart_button -> intent.setClass(this@Maininterface, charts::class.java)
+            R.id.photo_button -> intent.setClass(this@Maininterface, photo::class.java)
+            R.id.draw_button ->intent.setClass(this@Maininterface, connect::class.java)
+            R.id.guess_button -> intent.setClass(this@Maininterface,normal::class.java)
         }
         startActivity(intent)
     }
@@ -130,59 +103,12 @@ class MainActivity : AppCompatActivity() {
                 else
                     ScalePic(bitmap, mPhone!!.widthPixels)
             } catch (e: FileNotFoundException) {
-=======
-    fun new_request(){
-        var post_text = findViewById(R.id.post_text) as TextView
-        var account = findViewById(R.id.text_userid) as EditText
-        var password = findViewById(R.id.text_userpassword) as EditText
-
-        val json = JSONObject()
-        json.put("User",account.text.toString())
-        json.put("Password",password.text.toString())
-
-
-        jsonArray = JsonObjectRequest(
-                Request.Method.POST,strurl,json,
-                object: Response.Listener<JSONObject> {
-                    override fun onResponse(response: JSONObject?) {
-                        post_text.text = response.toString()
-
-                    }
-                },
-                object : Response.ErrorListener{
-                    override fun onErrorResponse(error: VolleyError?) {
-                        if (error != null) {
-                            post_text.text = error.message
-                        }
-                    }
-                }
-        )
-        Volley.newRequestQueue(this).add(jsonArray)
-    }
-
-    fun click(v:View)
-    {
-        when(v.id)
-        {
-            R.id.login -> {
-                new_request()
-                val intent = Intent()
-                intent.setClass(this@MainActivity, Maininterface::class.java)
-                startActivity(intent)
-            }
-
-            R.id.register ->{
-                val intent = Intent()
-                intent.setClass(this@MainActivity, creat::class.java)
-                startActivity(intent)
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
             }
 
         }
 
         super.onActivityResult(requestCode, resultCode, data)
     }
-<<<<<<< HEAD
 
     private fun ScalePic(bitmap: Bitmap, phone: Int) {
         //縮放比例預設為1
@@ -212,6 +138,4 @@ class MainActivity : AppCompatActivity() {
         private val CAMERA = 66
         private val PHOTO = 99
     }
-=======
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
 }
