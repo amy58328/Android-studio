@@ -10,23 +10,22 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class photo : AppCompatActivity() {
-    private var button: Button? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.photo)
-
-        button = findViewById<View>(R.id.button) as Button
-
-        val nextPageBtn = findViewById<View>(R.id.button) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@photo, Maininterface::class.java)
-            startActivity(intent)
-        }
     }
 
-    companion object {
-        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
+    fun click(v:View)
+    {
+        when(v.id)
+        {
+            R.id.goback_button ->{
+                val intent = Intent()
+                intent.setClass(this@photo, Maininterface::class.java)
+                startActivity(intent)
+            }
+
+        }
     }
 
 

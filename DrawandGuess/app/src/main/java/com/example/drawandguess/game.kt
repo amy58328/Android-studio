@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.game.*
 
 
 class game : AppCompatActivity() {
-    private var button: Button? = null
+
     private lateinit var color_list: List<String>
     // 跟後端連結的宣告
     private  val strurl = "http://140.136.149.224:3000/subject"
@@ -27,20 +27,10 @@ class game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
 
-        button = findViewById<View>(R.id.goback_button) as Button
-
-        val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@game, Maininterface::class.java)
-            startActivity(intent)
-        }
-
         initData()
         newrequest()
 
     }
-
 
     fun newrequest()
     {
@@ -74,9 +64,14 @@ class game : AppCompatActivity() {
                 layout_paint_board.Clean()
             R.id.color_button -> change_color()
             R.id.weight_button -> change_weight()
-            R.id.eraser_button -> {layout_paint_board.pencolorchange("#FFFFFF")
+            R.id.eraser_button -> {
+                layout_paint_board.pencolorchange("#FFFFFF")
                 Toast.makeText(this@game, "you choose the eraser", Toast.LENGTH_SHORT).show()}
-
+            R.id.goback_button -> {
+                val intent = Intent()
+                intent.setClass(this@game, Maininterface::class.java)
+                startActivity(intent)
+            }
         }
 
     }

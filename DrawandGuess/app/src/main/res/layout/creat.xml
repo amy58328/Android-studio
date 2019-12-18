@@ -134,13 +134,14 @@
         app:layout_constraintTop_toTopOf="@id/button_box" />
 
     <TextView
-        android:id="@+id/test"
+        android:id="@+id/goback_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:autoLink="web"
         android:background="#B97A56"
         android:gravity="center"
+        android:onClick="click"
         android:text="返回"
         app:layout_constraintLeft_toRightOf="@id/button_box"
         app:layout_constraintTop_toTopOf="@id/button_box" />

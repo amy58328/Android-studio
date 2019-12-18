@@ -70,10 +70,7 @@ class Maininterface : AppCompatActivity() {
         val intent = Intent()
         when(v.id)
         {
-            R.id.button_signout-> {
-                Log.e("string","sing in")
-                intent.setClass(this@Maininterface,MainActivity::class.java)
-            }
+            R.id.button_signout->  intent.setClass(this@Maininterface,MainActivity::class.java)
             R.id.draw_and_guess_button ->intent.setClass(this@Maininterface, game::class.java)
             R.id.chart_button -> intent.setClass(this@Maininterface, charts::class.java)
             R.id.photo_button -> intent.setClass(this@Maininterface, photo::class.java)

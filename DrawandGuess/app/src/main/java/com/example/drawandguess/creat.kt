@@ -11,21 +11,10 @@ import android.widget.EditText
 import android.widget.TextView
 
 class creat : AppCompatActivity() {
-    private var textView: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.creat)
 
-
-        textView = findViewById<View>(R.id.test) as TextView
-
-        val nextPageBtn = findViewById<View>(R.id.test) as TextView
-
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@creat, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     fun click(v:View)
@@ -38,6 +27,12 @@ class creat : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.cancel->{
+                val intent = Intent()
+                intent.setClass(this@creat, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+            R.id.goback_button ->{
                 val intent = Intent()
                 intent.setClass(this@creat, MainActivity::class.java)
                 startActivity(intent)

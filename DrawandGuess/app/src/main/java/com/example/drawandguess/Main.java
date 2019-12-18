@@ -33,11 +33,7 @@ import android.widget.Toast;
 public class Main extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private Toolbar toolbar;
-    private DrawerLayout drawer;
-    private Fragment fragment;
-    private FragmentManager fragmentManager;
-    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

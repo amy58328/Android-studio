@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B97A56"
-
-
     tools:context=".charts">
 
 
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/goback_button"
         android:layout_width="64dp"
         android:layout_height="80dp"
         android:background="@drawable/ring"
         android:text="返回"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

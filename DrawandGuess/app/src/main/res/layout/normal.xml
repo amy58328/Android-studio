@@ -13,6 +13,7 @@
         android:layout_height="80dp"
         android:background="@drawable/ring"
         android:text="返回"
+        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

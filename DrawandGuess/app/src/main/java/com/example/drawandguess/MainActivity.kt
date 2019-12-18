@@ -20,19 +20,16 @@ class MainActivity : AppCompatActivity() {
         when(v.id)
         {
             R.id.login -> {
-                Log.e("enter","maininterfase")
                 val intent = Intent()
                 intent.setClass(this@MainActivity, Maininterface::class.java)
                 startActivity(intent)
             }
 
             R.id.register ->{
-                Log.e("enter","creat")
                 val intent = Intent()
                 intent.setClass(this@MainActivity, creat::class.java)
                 startActivity(intent)
             }
-
         }
 
     }
