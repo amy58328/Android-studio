@@ -26,19 +26,6 @@ class connect : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connect)
-<<<<<<< HEAD
-
-        button = findViewById<View>(R.id.goback_button) as Button
-
-        val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@connect, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-=======
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
         initData()
     }
 

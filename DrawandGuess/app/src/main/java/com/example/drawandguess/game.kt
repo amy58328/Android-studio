@@ -21,36 +21,22 @@ class game : AppCompatActivity() {
 
     private lateinit var color_list: List<String>
     // 跟後端連結的宣告
-    private var objqueue: RequestQueue? = null
-    private  var getRequest: StringRequest? = null
     private  val strurl = "http://140.136.149.224:3000/subject"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
 
-<<<<<<< HEAD
-        button = findViewById<View>(R.id.goback_button) as Button
-
-        val nextPageBtn = findViewById<View>(R.id.goback_button) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@game, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-=======
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
         initData()
         newrequest()
-        objqueue!!.add(getRequest)
+
     }
 
     fun newrequest()
     {
         var lbl_result = findViewById(R.id.subject) as TextView
-        objqueue = Volley.newRequestQueue(this)
-        getRequest =
+        val objqueue = Volley.newRequestQueue(this)
+       val getRequest =
                 StringRequest(strurl, Response.Listener { response ->
                     //response，表示是回傳值，就是API要回傳的字串，也可以是JSON字串。
                     lbl_result.setText("subject:" + response)
@@ -58,6 +44,7 @@ class game : AppCompatActivity() {
                     //如果發生錯誤，就是回傳VolleyError，可以顯示是什麼錯誤。
                     lbl_result.text = error.message
                 })
+        objqueue!!.add(getRequest)
     }
     private fun initData()
     {

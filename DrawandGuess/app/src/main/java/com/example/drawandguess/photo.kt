@@ -25,14 +25,6 @@ class photo : AppCompatActivity() {
                 startActivity(intent)
             }
 
-<<<<<<< HEAD
-        val nextPageBtn = findViewById<View>(R.id.button) as Button
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@photo, MainActivity::class.java)
-            startActivity(intent)
-=======
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
         }
     }
 

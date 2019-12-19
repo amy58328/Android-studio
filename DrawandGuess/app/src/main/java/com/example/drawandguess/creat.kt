@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -24,21 +25,6 @@ class creat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.creat)
 
-<<<<<<< HEAD
-
-        textView = findViewById<View>(R.id.test) as TextView
-
-        val nextPageBtn = findViewById<View>(R.id.test) as TextView
-        nextPageBtn.setOnClickListener {
-            val intent = Intent()
-            intent.setClass(this@creat, user1::class.java)
-            startActivity(intent)
-        }
-    }
-
-    companion object {
-        val EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE"
-=======
     }
 
     fun click(v:View)
@@ -99,6 +85,5 @@ class creat : AppCompatActivity() {
         }
 
 
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
     }
 }

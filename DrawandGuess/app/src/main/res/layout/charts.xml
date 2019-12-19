@@ -5,13 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B97A56"
-<<<<<<< HEAD
-
-
-    tools:context=".MainActivity">
-=======
     tools:context=".charts">
->>>>>>> 670d4423402caf5b37a55c6c3c704104b603fa37
 
 
 

@@ -4,30 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B97A56"
-
-
+    android:theme="@style/AppTheme"
     tools:context=".MainActivity">
 
 
-
-
     <Button
-        android:id="@+id/goback_button"
+        android:id="@+id/button"
         android:layout_width="64dp"
         android:layout_height="80dp"
         android:background="@drawable/ring"
         android:text="返回"
-        android:onClick="click"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
 
+    <ScrollView
+        android:id="@+id/photo_scrollview"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
 
+        android:background="#B97A56"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/photo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo1" />
+
+            <Button
+                android:id="@+id/photo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo2" />
+
+            <Button
+                android:id="@+id/photo3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo3" />
+
+            <Button
+                android:id="@+id/photo4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo4" />
+
+            <Button
+                android:id="@+id/photo5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo5" />
+
+            <Button
+                android:id="@+id/photo6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo6" />
+            <Button
+                android:id="@+id/phot7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo7" />
+            <Button
+                android:id="@+id/photo8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo8" />
+            <Button
+                android:id="@+id/photo9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo9" />
+            <Button
+                android:id="@+id/photo10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="photo10" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/view"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+
+        app:layout_constraintHorizontal_bias="0.765"
+        app:layout_constraintLeft_toRightOf="@+id/photo_scrollview"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.397" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

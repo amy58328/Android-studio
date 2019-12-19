@@ -101,7 +101,6 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_paint_board"
         app:srcCompat="@drawable/eraser" />
 
-
     <TextView
         android:id="@+id/subject"
         android:layout_width="wrap_content"
@@ -115,6 +114,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043"
         tools:ignore="MissingConstraints" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
