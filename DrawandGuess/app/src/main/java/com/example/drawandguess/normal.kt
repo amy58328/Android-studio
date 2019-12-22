@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -18,6 +19,10 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
@@ -26,7 +31,7 @@ class normal : AppCompatActivity() {
     private var downloadView:ImageView?=null
     private  var account :String? = null
     private var jsonobject: JsonObjectRequest?=null
-    private  val strurl = "http://140.136.149.224:3000/user/login"
+    private  val strurl = "http://140.136.149.224:3000/picture/back"
     private  var title :String?=null
     private var dialog: EditText? = null
 
@@ -37,13 +42,22 @@ class normal : AppCompatActivity() {
         setContentView(R.layout.normal)
         downloadView = findViewById(R.id.blink)
         account = intent.getStringExtra("account")
-        Log.e("debg","normal"+account)
 
         dialog = findViewById(R.id.Dialog_box2)
+        title = "asd"
 
-        new_request()
-        title = "測試4"
-        downloadImage()
+        GlobalScope.launch(Dispatchers.Main) {
+            val job1 = async{
+                new_request()
+                Thread.sleep(500)
+            }
+            job1.await()
+
+            val job2 = async{
+                downloadImage()
+            }
+            job2.await()
+        }
     }
 
     fun new_request(){
@@ -51,15 +65,12 @@ class normal : AppCompatActivity() {
                 Request.Method.POST,strurl,
                 object: Response.Listener<JSONObject> {
                     override fun onResponse(response: JSONObject?) {
-//                        val string = response.toString()
-//                        val list  = string.split("{}:\"=")
-//                        val player_id = list.get(1)
-//                        val subject = list.get(3)
-//
-//                        Log.e("debug",player_id)
-//                        Log.e("debug",subject)
-//
-//                        title = player_id + "_" + subject
+                        val str = response.toString()
+                        val list  = str.split("\"")
+                        val player_id = list[3]
+                        val subject = list[7]
+
+                        title = player_id + "_" + subject
                     }
                 },
                 object : Response.ErrorListener{
@@ -87,8 +98,18 @@ class normal : AppCompatActivity() {
                 checkanswer()
             }
             R.id.next_button->{
-                new_request()
-                downloadImage()
+                GlobalScope.launch(Dispatchers.Main) {
+                    val job1 = async{
+                        new_request()
+                        Thread.sleep(1000)
+                    }
+                    job1.await()
+
+                    val job2 = async{
+                        downloadImage()
+                    }
+                    job2.await()
+                }
             }
             R.id.answer_button->{
                 giveanswer()

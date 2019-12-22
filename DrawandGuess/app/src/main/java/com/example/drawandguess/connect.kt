@@ -16,12 +16,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.net.toUri
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.game.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.File
 import java.io.FileOutputStream
@@ -37,7 +42,6 @@ class connect : AppCompatActivity() {
         setContentView(R.layout.connect)
         initData()
         account = intent.getStringExtra("account")
-        Log.e("debg","connect"+account)
     }
 
     private fun initData() {
@@ -59,7 +63,10 @@ class connect : AppCompatActivity() {
                 layout_paint_board.pencolorchange("#FFFFFF")
                 Toast.makeText(this@connect, "you choose the eraser", Toast.LENGTH_SHORT).show()
             }
-            R.id.save_button -> check()
+            R.id.save_button ->{
+                check()
+
+            }
             R.id.goback_button -> {
                 val intent = Intent()
                 intent.setClass(this@connect, Maininterface::class.java)
@@ -163,6 +170,7 @@ class connect : AppCompatActivity() {
     }
 
     fun new_request(name:String){
+
         val json = JSONObject()
         json.put("account",account)
         json.put("subject",name)
@@ -182,6 +190,8 @@ class connect : AppCompatActivity() {
                     }
                 }
         )
+
+
         Volley.newRequestQueue(this).add(jsonobject)
     }
 
@@ -196,11 +206,21 @@ class connect : AppCompatActivity() {
                 uri = file.toUri()
 
                 val stream = FileOutputStream(file)
-                layout_paint_board.saveBitmap(stream, uri, this, title,account)
-                stream.flush()
-                stream.close()
 
-                new_request(fileName)
+                GlobalScope.launch(Dispatchers.Main) {
+                    val job1 = async{
+                        layout_paint_board.saveBitmap(stream, uri, this@connect, title,account)
+                        stream.flush()
+                        stream.close()
+                    }
+                    job1.await()
+
+                    val job2 = async{
+                        new_request(title)
+                    }
+                    job2.await()
+                }
+
 
                 Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
 
@@ -209,7 +229,6 @@ class connect : AppCompatActivity() {
                 Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
             }
         }
-
 
     }
 
