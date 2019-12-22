@@ -22,10 +22,15 @@ class game : AppCompatActivity() {
     private lateinit var color_list: List<String>
     // 跟後端連結的宣告
     private  val strurl = "http://140.136.149.224:3000/subject"
+    private var account:String?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.game)
+
+        account = intent.getStringExtra("account")
+        Log.e("debg","game"+account)
 
         initData()
         newrequest()
@@ -70,6 +75,7 @@ class game : AppCompatActivity() {
             R.id.goback_button -> {
                 val intent = Intent()
                 intent.setClass(this@game, Maininterface::class.java)
+                intent.putExtra("account",account)
                 startActivity(intent)
             }
         }

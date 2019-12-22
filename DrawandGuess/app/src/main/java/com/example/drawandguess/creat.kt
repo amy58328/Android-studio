@@ -19,19 +19,30 @@ import org.json.JSONObject
 
 class creat : AppCompatActivity() {
     private var jsonArray:JsonObjectRequest?=null
-    private  val strurl = "http://140.136.149.224:3000/user/login"
+    private val strurl = "http://140.136.149.224:3000/user/registed"
+    private var account :EditText?=null
+    private var password:EditText?=null
+    private var password2:EditText?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.creat)
-
+        account = findViewById(R.id.text_userid)
+        password = findViewById(R.id.text_userpassword)
+        password2 = findViewById(R.id.text_userpassword2)
     }
 
     fun click(v:View)
     {
         when(v.id)
         {
-            R.id.correct -> new_request()
+            R.id.correct ->{
+                if(isempty())
+                {
+                    new_request()
+                }
+            }
+
             R.id.cancel->{
                 val intent = Intent()
                 intent.setClass(this@creat, MainActivity::class.java)
@@ -43,35 +54,63 @@ class creat : AppCompatActivity() {
                 intent.setClass(this@creat, MainActivity::class.java)
                 startActivity(intent)
             }
-
         }
     }
 
-    fun new_request(){
-        var post_text = findViewById(R.id.post_text) as TextView
-        var account = findViewById(R.id.text_userid) as EditText
-        var password = findViewById(R.id.text_userpassword) as EditText
-        var password2 = findViewById(R.id.text_userpassword2) as EditText
+    fun isempty():Boolean
+    {
+        if(account!!.text.isEmpty())
+        {
+            Toast.makeText(applicationContext, "Your account is empty", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(password!!.text.isEmpty())
+        {
+            Toast.makeText(applicationContext, "The password is empty", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        if(password2!!.text.isEmpty())
+        {
+            Toast.makeText(applicationContext, "Please enter the password twice", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else
+        {
+            return true
+        }
+    }
 
-        if(password.text.toString() == password2.text.toString())
+
+    fun new_request(){
+        if(password!!.text.toString().equals(password2!!.text.toString()) )
         {
             val json = JSONObject()
-            json.put("User",account.text.toString())
-            json.put("Password",password.text.toString())
-
+            json.put("User",account!!.text.toString())
+            json.put("Password",password!!.text.toString())
 
             jsonArray = JsonObjectRequest(
                     Request.Method.POST,strurl,json,
                     object: Response.Listener<JSONObject> {
                         override fun onResponse(response: JSONObject?) {
-                            post_text.text = response.toString()
 
+                            val test:String?=response.toString().substring(12,15)
+
+                            if(test.equals("Yes"))
+                            {
+                                val intent = Intent()
+                                intent.setClass(this@creat, MainActivity::class.java)
+                                startActivity(intent)
+                            }
+                            else
+                            {
+                                Toast.makeText(applicationContext, "create error", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     },
                     object : Response.ErrorListener{
                         override fun onErrorResponse(error: VolleyError?) {
                             if (error != null) {
-                                post_text.text = error.message
+                                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -80,8 +119,8 @@ class creat : AppCompatActivity() {
         }
         else{
             Toast.makeText(applicationContext, "The password is not the same twice", Toast.LENGTH_SHORT).show()
-            password.text = null
-            password2.text = null
+            password!!.text = null
+            password2!!.text = null
         }
 
 

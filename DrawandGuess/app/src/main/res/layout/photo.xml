@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme"
-    tools:context=".MainActivity">
+    tools:context=".photo">
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/goback_button"
+        android:onClick="click"
         android:layout_width="64dp"
         android:layout_height="80dp"
         android:background="@drawable/ring"

@@ -25,10 +25,14 @@ class Maininterface : AppCompatActivity() {
     private var editTextMessage: EditText? = null
     private var mImg: ImageView? = null
     private var mPhone: DisplayMetrics? = null
+    private  var account :String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
+        account = intent.getStringExtra("account")
+        Log.e("debg","Maininterfase"+account)
 
 
         textViewMessage = findViewById<View>(R.id.textView) as TextView
@@ -68,6 +72,8 @@ class Maininterface : AppCompatActivity() {
 //    // button click 之後的行為
     fun click(v:View){
         val intent = Intent()
+//        var bundel = Bundle()
+//        bundel.putString("account",account)
         when(v.id)
         {
             R.id.button_signout->  intent.setClass(this@Maininterface,MainActivity::class.java)
@@ -77,6 +83,7 @@ class Maininterface : AppCompatActivity() {
             R.id.draw_button ->intent.setClass(this@Maininterface, connect::class.java)
             R.id.guess_button -> intent.setClass(this@Maininterface,normal::class.java)
         }
+        intent.putExtra("account",account)
         startActivity(intent)
     }
 

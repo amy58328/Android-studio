@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
         {
             R.id.btnChoose ->chooseImage()
             R.id.btnUpload ->{
-
                 uploadImage()
             }
 
@@ -66,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data!= null && data.data != null)
         {
             filepath = data.data
+            Log.e("debug",filepath.toString())
             try{
                 var bitmap:Bitmap
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filepath)
@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
     fun uploadImage(){
         val storage = FirebaseStorage.getInstance()
         storageReference = storage.getReference()
+        var test : String?="aa"
 
         val filePath = filepath
         if (filePath != null) {
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             progressDialog.setTitle("Uploading...")
             progressDialog.show()
             val ref =
-                storageReference!!.child("images/" + UUID.randomUUID().toString())
+                storageReference!!.child("images/" + test)
             ref.putFile(filePath)
                 .addOnSuccessListener {
                     progressDialog.dismiss()
@@ -123,8 +124,6 @@ class MainActivity : AppCompatActivity() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-
-
     }
 
 }

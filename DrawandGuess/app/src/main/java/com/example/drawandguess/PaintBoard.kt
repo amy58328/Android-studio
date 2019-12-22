@@ -1,14 +1,19 @@
 package devdon.com.painter
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
+import android.net.Uri
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.OutputStream
 
 class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
@@ -83,7 +88,37 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     @SuppressLint("WrongThread")
-    fun saveBitmap(stream: OutputStream) {
+    fun saveBitmap(stream: OutputStream,  uri: Uri, tt:Context, name:String,account:String?) {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+        val storage = FirebaseStorage.getInstance()
+        var storageReference : StorageReference?=null
+        storageReference = storage.getReference()
+
+        val progressDialog = ProgressDialog(tt)
+        progressDialog.setTitle("Uploading...")
+        progressDialog.show()
+
+        val  title= account+"_"+name
+
+        val ref =
+                storageReference!!.child("images/" + title)
+        ref.putFile(uri)
+                .addOnSuccessListener {
+                    progressDialog.dismiss()
+                    Toast.makeText(tt, "Uploaded", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    progressDialog.dismiss()
+                    Toast.makeText(tt, "Failed " + e.message, Toast.LENGTH_SHORT)
+                            .show()
+                }
+                .addOnProgressListener { taskSnapshot ->
+                    val progress =
+                            100.0 * taskSnapshot.bytesTransferred / taskSnapshot
+                                    .totalByteCount
+                    progressDialog.setMessage("Uploaded " + progress.toInt() + "%")
+                }
+
     }
 }
