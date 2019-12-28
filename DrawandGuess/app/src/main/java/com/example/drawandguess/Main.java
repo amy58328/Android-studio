@@ -2,7 +2,7 @@ package com.example.drawandguess;
 
 import android.os.Bundle;
 
-import com.example.drawandguess.ui.home.HomeFragment;
+//import com.example.drawandguess.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

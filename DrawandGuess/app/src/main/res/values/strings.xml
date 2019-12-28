@@ -33,6 +33,9 @@
     <string name="save">save</string>
     <string name="title_activity_ddd">ddd</string>
 
+    <string name="done">Time out!</string>
+    <string name="remain">Time:</string>
+
 
 </resources>
 

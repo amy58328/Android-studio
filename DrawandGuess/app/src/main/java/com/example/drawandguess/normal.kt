@@ -1,15 +1,15 @@
 package com.example.drawandguess
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.media.Image
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import android.widget.*
 
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
@@ -26,9 +26,20 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.io.File
 import java.io.IOException
+import com.example.drawandguess.R.string.remain
+import kotlinx.android.synthetic.main.normal.*
+import android.content.DialogInterface
+
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class normal : AppCompatActivity() {
     private var downloadView:ImageView?=null
+    private  var timertext : TextView?=null
     private  var account :String? = null
     private var jsonobject: JsonObjectRequest?=null
     private  val strurl = "http://140.136.149.224:3000/picture/back"
@@ -36,6 +47,7 @@ class normal : AppCompatActivity() {
     private var dialog: EditText? = null
     var subject :String ? = null
     var number : Int = 0
+    var point:Int=0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +57,38 @@ class normal : AppCompatActivity() {
         account = intent.getStringExtra("account")
 
         dialog = findViewById(R.id.Dialog_box2)
-        title = "asd"
 
+        object : CountDownTimer(180000, 1000) {
+
+            override fun onFinish() {
+                info.text = getString(R.string.done)
+                AlertDialog.Builder(this@normal)
+                        .setIcon(R.drawable.ring)
+                        .setTitle("your score:"+point)
+                        .setPositiveButton("restart", DialogInterface.OnClickListener {
+
+                            dialog, which ->
+                            val intent = Intent()
+                            intent.setClass(this@normal,normal::class.java)
+                            startActivity(intent)})
+                        .setNeutralButton("home", DialogInterface.OnClickListener {
+
+                            dialog, which ->
+                            val intent = Intent()
+                            intent.setClass(this@normal,Maininterface::class.java)
+                            startActivity(intent)})
+                         .setNegativeButton("cancel", null).create()
+                        .show()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                info.text = getString(remain).plus("${millisUntilFinished/1000}")
+            }
+
+        }.start()
         new_picture()
+
+
     }
 
     fun new_picture(){
@@ -164,6 +205,7 @@ class normal : AppCompatActivity() {
                 Toast.makeText(this@normal, "answer is correct", Toast.LENGTH_SHORT).show()
                 dialog!!.setText("")
                 new_picture()
+                point++;
             }
             else
             {

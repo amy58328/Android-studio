@@ -85,26 +85,26 @@
 
 
                     <Button
-                        android:text="3"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button8"
                         android:background="@android:color/transparent" />
 
                     <Button
-                        android:text="3"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button9"
                         android:background="@android:color/transparent" />
                     <Button
-                        android:text="3"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button10"
                         android:background="@android:color/transparent" />
                     <Button
-                        android:text="3"
+                        android:text=""
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/button11"
