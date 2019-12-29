@@ -99,7 +99,7 @@ class photo : AppCompatActivity() {
     {
 
         val listview = findViewById(R.id.listview) as ListView
-        val adapter: ArrayAdapter<*> = ArrayAdapter<String?>(this, android.R.layout.simple_list_item_1, title)
+        val adapter: ArrayAdapter<*> = ArrayAdapter<String?>(this, R.layout.mylist, title)
         listview.adapter = adapter
 
         listview.onItemClickListener = OnItemClickListener {
@@ -108,7 +108,7 @@ class photo : AppCompatActivity() {
         }
 
     }
-    fun click(v:View)
+    /*fun click(v:View)
     {
         when(v.id)
         {
@@ -120,7 +120,7 @@ class photo : AppCompatActivity() {
             }
 
         }
-    }
+    }*/
 
     fun downloadImage(t : String){
         val tt = account + "_" + t
