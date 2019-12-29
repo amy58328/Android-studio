@@ -34,7 +34,8 @@ class normal : AppCompatActivity() {
     private  val strurl = "http://140.136.149.224:3000/picture/back"
     private  var title :String?=null
     private var dialog: EditText? = null
-
+    var subject :String ? = null
+    var number : Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +47,11 @@ class normal : AppCompatActivity() {
         dialog = findViewById(R.id.Dialog_box2)
         title = "asd"
 
+        new_picture()
+    }
+
+    fun new_picture(){
+        number = 0
         GlobalScope.launch(Dispatchers.Main) {
             val job1 = async{
                 new_request()
@@ -59,7 +65,6 @@ class normal : AppCompatActivity() {
             job2.await()
         }
     }
-
     fun new_request(){
         jsonobject = JsonObjectRequest(
                 Request.Method.POST,strurl,
@@ -68,7 +73,7 @@ class normal : AppCompatActivity() {
                         val str = response.toString()
                         val list  = str.split("\"")
                         val player_id = list[3]
-                        val subject = list[7]
+                        subject = list[7]
 
                         title = player_id + "_" + subject
                     }
@@ -97,30 +102,52 @@ class normal : AppCompatActivity() {
             R.id.enter_button ->{
                 checkanswer()
             }
-            R.id.next_button->{
-                GlobalScope.launch(Dispatchers.Main) {
-                    val job1 = async{
-                        new_request()
-                        Thread.sleep(1000)
-                    }
-                    job1.await()
-
-                    val job2 = async{
-                        downloadImage()
-                    }
-                    job2.await()
-                }
-            }
+            R.id.next_button->{new_picture() }
             R.id.answer_button->{
                 giveanswer()
+            }
+            R.id.prompt->{
+                number += 1
+                prompt(number)
             }
 
         }
     }
 
+    fun prompt(n : Int)
+    {
+        var size = subject!!.length
+        if(n == 1)
+        {
+            Toast.makeText(this@normal, "The answer is " + size + " words", Toast.LENGTH_SHORT).show()
+        }
+
+        else if(n == 2)
+        {
+            val string = subject
+            var text = string!!.substring(0,1)
+            Toast.makeText(this@normal, "The first word is " + text , Toast.LENGTH_SHORT).show()
+        }
+
+        else if( n ==3)
+        {
+            val string = subject
+            var text = string!!.substring(size -1 , size)
+            Toast.makeText(this@normal, "The last word is " + text , Toast.LENGTH_SHORT).show()
+        }
+
+        else
+        {
+            Toast.makeText(this@normal, "you have no prompt" , Toast.LENGTH_SHORT).show()
+        }
+
+
+    }
+
+
     fun giveanswer()
     {
-        Toast.makeText(this@normal, "The answer is " + title, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@normal, "The answer is " + subject, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -132,12 +159,11 @@ class normal : AppCompatActivity() {
             Toast.makeText(this@normal, "Your answer is empty", Toast.LENGTH_SHORT).show()
         }
         else{
-            if(answer.equals(title))
+            if(answer.equals(subject))
             {
                 Toast.makeText(this@normal, "answer is correct", Toast.LENGTH_SHORT).show()
                 dialog!!.setText("")
-                new_request()
-                downloadImage()
+                new_picture()
             }
             else
             {
