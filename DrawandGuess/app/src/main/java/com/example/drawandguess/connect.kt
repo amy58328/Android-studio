@@ -90,7 +90,6 @@ class connect : AppCompatActivity() {
                         Toast.makeText(applicationContext, "Title is empty", Toast.LENGTH_SHORT).show()
                     } else {
                         saveClickHandler(title)
-                        Toast.makeText(applicationContext, "your title is " + title, Toast.LENGTH_SHORT).show()
                     }
                 }
                 .show()
@@ -171,28 +170,37 @@ class connect : AppCompatActivity() {
 
     fun new_request(name:String){
 
-        val json = JSONObject()
-        json.put("account",account)
-        json.put("subject",name)
+            val json = JSONObject()
+            json.put("account",account)
+            json.put("subject",name)
 
-        jsonobject = JsonObjectRequest(
-                Request.Method.POST,strurl,json,
-                object: Response.Listener<JSONObject> {
-                    override fun onResponse(response: JSONObject?) {
-                        Toast.makeText(applicationContext, response.toString(), Toast.LENGTH_SHORT).show()
-                    }
-                },
-                object : Response.ErrorListener{
-                    override fun onErrorResponse(error: VolleyError?) {
-                        if (error != null) {
-                            Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+            jsonobject = JsonObjectRequest(
+                    Request.Method.POST,strurl,json,
+                    object: Response.Listener<JSONObject> {
+                        override fun onResponse(response: JSONObject?) {
+                            Toast.makeText(applicationContext, response.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    object : Response.ErrorListener{
+                        override fun onErrorResponse(error: VolleyError?) {
+                            if (error != null) {
+                                Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
-                }
-        )
+            )
 
 
-        Volley.newRequestQueue(this).add(jsonobject)
+            Volley.newRequestQueue(this).add(jsonobject)
+//        }
+//
+//        else
+//        {
+//            Toast.makeText(applicationContext, "your account is null please login again", Toast.LENGTH_SHORT).show()
+//            val intent = Intent()
+//            intent.setClass(this@connect,MainActivity::class.java)
+//            startActivity(intent)
+//        }
     }
 
     private fun saveClickHandler(title: String) {
@@ -207,22 +215,36 @@ class connect : AppCompatActivity() {
 
                 val stream = FileOutputStream(file)
 
-                GlobalScope.launch(Dispatchers.Main) {
-                    val job1 = async{
-                        layout_paint_board.saveBitmap(stream, uri, this@connect, title,account)
-                        stream.flush()
-                        stream.close()
-                    }
-                    job1.await()
+                if(!account.equals("null"))
+                {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val job1 = async{
+                            layout_paint_board.saveBitmap(stream, uri, this@connect, title,account)
+                            stream.flush()
+                            stream.close()
+                        }
+                        job1.await()
 
-                    val job2 = async{
-                        new_request(title)
+                        val job2 = async{
+                            new_request(title)
+                        }
+                        job2.await()
                     }
-                    job2.await()
+
+                    Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+                }
+
+                else
+                {
+                    Toast.makeText(applicationContext, "your account is null please login again", Toast.LENGTH_SHORT).show()
+                    val intent = Intent()
+                    intent.setClass(this@connect,MainActivity::class.java)
+                    startActivity(intent)
                 }
 
 
-                Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+
+
 
             } catch (e: Exception) {
                 println(e)
