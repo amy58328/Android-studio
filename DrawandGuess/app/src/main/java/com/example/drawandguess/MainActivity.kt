@@ -1,5 +1,7 @@
 package com.example.drawandguess
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
@@ -96,6 +98,18 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent()
                 intent.setClass(this@MainActivity, creat::class.java)
                 startActivity(intent)
+            }
+            R.id.forget ->{
+                AlertDialog.Builder(this@MainActivity)
+                        .setIcon(R.drawable.ring)
+                        .setTitle("你跟我說也沒辦法啊! 去找歐歐")
+                        .setPositiveButton("確定", DialogInterface.OnClickListener {
+
+                            dialog, which ->
+                           })
+
+                        //.setNegativeButton("", null).create()
+                        .show()
             }
         }
     }

@@ -54,6 +54,11 @@
             android:screenOrientation="landscape"
             />
         <activity
+            android:name=".wait"
+            android:label="@string/title_activity_wait"
+            android:screenOrientation="landscape"
+            />
+        <activity
             android:name=".Maininterface"
             android:label="@string/title_activity_normal"
             android:screenOrientation="landscape"
