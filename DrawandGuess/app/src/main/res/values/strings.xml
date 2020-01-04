@@ -36,6 +36,7 @@
     <string name="done">Time out!</string>
     <string name="remain">Time:</string>
     <string name="title_activity_wait" />
+    <string name="title_activity_game_guess" />
 
 
 </resources>

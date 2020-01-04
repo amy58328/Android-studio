@@ -88,7 +88,7 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
     }
 
     @SuppressLint("WrongThread")
-    fun saveBitmap(stream: OutputStream,  uri: Uri, tt:Context, name:String,account:String?){
+    fun saveBitmap(stream: OutputStream,  uri: Uri, tt:Context, name:String?,account:String?){
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
 
         val storage = FirebaseStorage.getInstance()

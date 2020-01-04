@@ -1,7 +1,13 @@
 package com.example.drawandguess
 
+import android.Manifest
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -10,11 +16,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.game.*
+import kotlinx.android.synthetic.main.normal.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 
 class game : AppCompatActivity() {
@@ -23,6 +38,8 @@ class game : AppCompatActivity() {
     // 跟後端連結的宣告
     private  val strurl = "http://140.136.149.224:3000/subject"
     private var account:String?=null
+    private var info :TextView?=null
+    var title :String?= null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,11 +47,39 @@ class game : AppCompatActivity() {
         setContentView(R.layout.game)
 
         account = intent.getStringExtra("account")
-        Log.e("debg","game"+account)
 
         initData()
         newrequest()
+        clock()
 
+    }
+
+    fun clock()
+    {
+        info = findViewById(R.id.info)
+        object : CountDownTimer(10000, 1000) {
+
+            override fun onFinish() {
+                info!!.text = getString(R.string.done)
+//                saveClickHandler(title)
+                android.app.AlertDialog.Builder(this@game)
+                        .setIcon(R.drawable.ring)
+                        .setTitle("time up")
+                        .setPositiveButton("ok", DialogInterface.OnClickListener {
+
+                            dialog, which ->
+                            val intent = Intent()
+                            intent.setClass(this@game,game_guess::class.java)
+                            intent.putExtra("account",account)
+                            startActivity(intent)})
+                        .show()
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+                info!!.text = getString(R.string.remain).plus("${millisUntilFinished/1000}")
+            }
+
+        }.start()
     }
 
     fun newrequest()
@@ -44,6 +89,7 @@ class game : AppCompatActivity() {
        val getRequest =
                 StringRequest(strurl, Response.Listener { response ->
                     //response，表示是回傳值，就是API要回傳的字串，也可以是JSON字串。
+                    title = response
                     lbl_result.setText("subject:" + response)
                 }, Response.ErrorListener { error ->
                     //如果發生錯誤，就是回傳VolleyError，可以顯示是什麼錯誤。
@@ -59,7 +105,6 @@ class game : AppCompatActivity() {
                 getString(R.string.color_green),
                 getString(R.string.color_yellow))
     }
-
 
     fun click(v : View)
     {
@@ -86,7 +131,6 @@ class game : AppCompatActivity() {
     private fun  change_weight(){
         val popDialog = AlertDialog.Builder(this)
         val seek = SeekBar(this)
-//        val item1 = TextView(this)
         seek.setMax(100)
         seek.setProgress(size)
         popDialog.setTitle("change the pen weight")
@@ -99,7 +143,6 @@ class game : AppCompatActivity() {
                 val temp = i.toString()
                 size = i;
                 weight_button.text = temp + "f"
-//                item1.setText("Value is : "+ temp+"f")
                 layout_paint_board.pen_size_change(i)
                 popDialog.setMessage("Value is : "+ temp+"f")
             }
@@ -153,6 +196,47 @@ class game : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
+    }
+
+    private fun checkWritable(): Boolean {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0)
+            return false
+        } else {
+            return true
+        }
+    }
+
+    private fun saveClickHandler(title: String?) {
+        if (checkWritable()) {
+            try {
+                Toast.makeText(this, "enter save", Toast.LENGTH_SHORT).show()
+                val fileName = title + ".jpg"
+                var file = File(Environment.getExternalStorageDirectory(), fileName)
+
+                val uri: Uri
+                uri = file.toUri()
+
+                val stream = FileOutputStream(file)
+
+                if(!account.equals("null"))
+                {
+                    GlobalScope.launch(Dispatchers.Main) {
+                        val job1 = async{
+                            layout_paint_board.saveBitmap(stream, uri, this@game, title,account)
+                            stream.flush()
+                            stream.close()
+                        }
+                        job1.await()
+                    }
+
+                    Toast.makeText(this, "Save Success", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                println(e)
+                Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     }
 

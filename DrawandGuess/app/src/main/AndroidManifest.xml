@@ -34,6 +34,11 @@
             android:screenOrientation="landscape"
              />
         <activity
+            android:name=".wait"
+            android:label="@string/title_activity_wait"
+            android:screenOrientation="landscape"
+            />
+        <activity
             android:name=".charts"
             android:label="@string/title_activity_charts"
             android:screenOrientation="landscape"
@@ -54,11 +59,6 @@
             android:screenOrientation="landscape"
             />
         <activity
-            android:name=".wait"
-            android:label="@string/title_activity_wait"
-            android:screenOrientation="landscape"
-            />
-        <activity
             android:name=".Maininterface"
             android:label="@string/title_activity_normal"
             android:screenOrientation="landscape"
@@ -68,6 +68,11 @@
             android:label="@string/title_activity_creat"
             android:screenOrientation="landscape"
              />
+        <activity
+            android:name=".game_guess"
+            android:label="@string/title_activity_game_guess"
+            android:screenOrientation="landscape"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

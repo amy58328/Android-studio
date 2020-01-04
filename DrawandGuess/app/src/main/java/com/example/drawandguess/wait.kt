@@ -26,7 +26,6 @@ class wait : AppCompatActivity() {
         setContentView(R.layout.waiting)
 
         account = intent.getStringExtra("account")
-        Log.w("debug",account)
 
         GlobalScope.launch(Dispatchers.Main) {
             val job1 = async {
@@ -40,9 +39,6 @@ class wait : AppCompatActivity() {
             }
             job2.await()
         }
-
-        new_request(0)
-
     }
 
     fun click(v:View)
@@ -61,7 +57,6 @@ class wait : AppCompatActivity() {
     }
 
     fun new_request(first:Int){
-
         if(first == 1)
         {
             val strurl = "http://140.136.149.224:3000/room/in"
@@ -72,7 +67,6 @@ class wait : AppCompatActivity() {
                     Request.Method.POST,strurl,json,
                     object: Response.Listener<JSONObject> {
                         override fun onResponse(response: JSONObject?) {
-
                         }
                     },
                     object : Response.ErrorListener{

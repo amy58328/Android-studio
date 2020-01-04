@@ -86,7 +86,6 @@ class photo : AppCompatActivity() {
                 object : Response.ErrorListener{
                     override fun onErrorResponse(error: VolleyError?) {
                         if (error != null) {
-//                            Toast.makeText(applicationContext, error.message, Toast.LENGTH_SHORT).show()
                             Log.e("debug",error.message.toString())
                         }
                     }
@@ -108,19 +107,6 @@ class photo : AppCompatActivity() {
         }
 
     }
-    /*fun click(v:View)
-    {
-        when(v.id)
-        {
-            R.id.goback_button ->{
-                val intent = Intent()
-                intent.setClass(this@photo, Maininterface::class.java)
-                intent.putExtra("account",account)
-                startActivity(intent)
-            }
-
-        }
-    }*/
 
     fun downloadImage(t : String){
         val tt = account + "_" + t

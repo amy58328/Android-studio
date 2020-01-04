@@ -94,16 +94,16 @@ class normal : AppCompatActivity() {
     fun new_picture(){
         number = 0
         GlobalScope.launch(Dispatchers.Main) {
-            val job1 = async{
-                new_request()
-                Thread.sleep(500)
-            }
-            job1.await()
+                val job1 = async{
+                    new_request()
+                    Thread.sleep(500)
+                }
+                job1.await()
 
-            val job2 = async{
-                downloadImage()
-            }
-            job2.await()
+                val job2 = async{
+                    downloadImage()
+                }
+                job2.await()
         }
     }
     fun new_request(){

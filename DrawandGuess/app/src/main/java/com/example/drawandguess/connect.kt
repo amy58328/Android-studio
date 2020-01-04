@@ -21,6 +21,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.game.*
 import kotlinx.coroutines.Dispatchers
@@ -36,12 +37,32 @@ class connect : AppCompatActivity() {
     private val strurl : String?="http://140.136.149.224:3000/picture/store"
     private var jsonobject: JsonObjectRequest?=null
     private  var account :String? = null
+    private var title :String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connect)
         initData()
         account = intent.getStringExtra("account")
+        getnewrequest()
+    }
+
+    fun getnewrequest()
+    {
+        val subjecturl = "http://140.136.149.224:3000/subject"
+        var lbl_result = findViewById(R.id.subject) as TextView
+        val objqueue = Volley.newRequestQueue(this)
+        val getRequest =
+                StringRequest(subjecturl, Response.Listener { response ->
+                    //response，表示是回傳值，就是API要回傳的字串，也可以是JSON字串。
+                    title = response
+                    lbl_result.setText("subject:" + response)
+
+                }, Response.ErrorListener { error ->
+                    //如果發生錯誤，就是回傳VolleyError，可以顯示是什麼錯誤。
+                    lbl_result.text = error.message
+                })
+        objqueue!!.add(getRequest)
     }
 
     private fun initData() {
@@ -74,18 +95,21 @@ class connect : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            R.id.next_button->getnewrequest()
+
         }
 
     }
 
     private fun check() {
         val item = LayoutInflater.from(this@connect).inflate(R.layout.connect_enter_title, null)
+        val ediText = item.findViewById(R.id.enter_title_button) as EditText
+        ediText.setText(title)
         AlertDialog.Builder(this@connect)
                 .setTitle("Save")
                 .setView(item)
                 .setPositiveButton("save") { _, _ ->
-                    val ediText = item.findViewById(R.id.enter_title_button) as EditText
-                    val title = ediText.text.toString()
+                    title = ediText.text.toString()
                     if (TextUtils.isEmpty(title)) {
                         Toast.makeText(applicationContext, "Title is empty", Toast.LENGTH_SHORT).show()
                     } else {
@@ -168,7 +192,7 @@ class connect : AppCompatActivity() {
         }
     }
 
-    fun new_request(name:String){
+    fun new_request(name:String?){
 
             val json = JSONObject()
             json.put("account",account)
@@ -192,18 +216,9 @@ class connect : AppCompatActivity() {
 
 
             Volley.newRequestQueue(this).add(jsonobject)
-//        }
-//
-//        else
-//        {
-//            Toast.makeText(applicationContext, "your account is null please login again", Toast.LENGTH_SHORT).show()
-//            val intent = Intent()
-//            intent.setClass(this@connect,MainActivity::class.java)
-//            startActivity(intent)
-//        }
     }
 
-    private fun saveClickHandler(title: String) {
+    private fun saveClickHandler(title: String?) {
         if (checkWritable()) {
             try {
                 Toast.makeText(this, "enter save", Toast.LENGTH_SHORT).show()
@@ -241,11 +256,6 @@ class connect : AppCompatActivity() {
                     intent.setClass(this@connect,MainActivity::class.java)
                     startActivity(intent)
                 }
-
-
-
-
-
             } catch (e: Exception) {
                 println(e)
                 Toast.makeText(this, "Save Failed", Toast.LENGTH_SHORT).show()
