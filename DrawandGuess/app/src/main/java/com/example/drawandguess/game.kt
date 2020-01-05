@@ -57,11 +57,11 @@ class game : AppCompatActivity() {
     fun clock()
     {
         info = findViewById(R.id.info)
-        object : CountDownTimer(10000, 1000) {
+        object : CountDownTimer(180000, 1000) {
 
             override fun onFinish() {
                 info!!.text = getString(R.string.done)
-//                saveClickHandler(title)
+                saveClickHandler(title)
                 android.app.AlertDialog.Builder(this@game)
                         .setIcon(R.drawable.ring)
                         .setTitle("time up")
@@ -73,6 +73,7 @@ class game : AppCompatActivity() {
                             intent.putExtra("account",account)
                             startActivity(intent)})
                         .show()
+                        .setCanceledOnTouchOutside(false)
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -196,6 +197,7 @@ class game : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
+                .setCanceledOnTouchOutside(false)
     }
 
     private fun checkWritable(): Boolean {

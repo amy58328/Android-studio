@@ -96,8 +96,9 @@ class PaintBoard(context: Context, attrs: AttributeSet) : View(context, attrs) {
         storageReference = storage.getReference()
 
         val progressDialog = ProgressDialog(tt)
-        progressDialog.setTitle("Uploading...")
+        progressDialog.setTitle("Please wait ... ")
         progressDialog.show()
+        progressDialog .setCanceledOnTouchOutside(false)
 
         val  title= account+"_"+name
 

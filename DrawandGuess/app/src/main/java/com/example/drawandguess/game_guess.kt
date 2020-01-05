@@ -39,25 +39,13 @@ class game_guess : AppCompatActivity() {
     var ans :EditText?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e("game_guess","1-1")
         super.onCreate(savedInstanceState)
-        Log.e("game_guess","1-2")
         setContentView(R.layout.game_guess)
-        Log.e("game_guess","1-3")
 
         ans = findViewById(R.id.Dialog_box2)
-        Log.e("game_guess","1--4")
         account = intent.getStringExtra("account")
-        Log.e("game_guess",account)
-        Log.e("game_guess","1-5")
-//        new_request()
-//        title = "妹妹_手"
-//        subject = "手"
-//            downloadImage()
         clock()
-        Log.e("game_guess","1")
         new_picture()
-        Log.e("game_guess","2")
 
     }
 
@@ -68,13 +56,19 @@ class game_guess : AppCompatActivity() {
            R.id.enter_button->{
                checkanswer()
            }
+           R.id.goback_button -> {
+               val intent = Intent()
+               intent.setClass(this@game_guess, Maininterface::class.java)
+               intent.putExtra("account",account)
+               startActivity(intent)
+           }
        }
     }
     fun clock()
     {
         info = findViewById(R.id.info)
         account = intent.getStringExtra("account")
-        object : CountDownTimer(10000, 1000) {
+        object : CountDownTimer(30000, 1000) {
             override fun onFinish() {
                 info!!.text = getString(R.string.done)
                 android.app.AlertDialog.Builder(this@game_guess)
@@ -82,12 +76,12 @@ class game_guess : AppCompatActivity() {
                         .setTitle("time up")
                         .setPositiveButton("ok", DialogInterface.OnClickListener{
                             dialog, which ->
-                            Log.e("debug","go wait")
                             val intent = Intent()
                             intent.setClass(this@game_guess,wait::class.java)
                             intent.putExtra("account",account)
                             startActivity(intent) })
                         .show()
+                        .setCanceledOnTouchOutside(false)
             }
             override fun onTick(millisUntilFinished: Long) {
                 info!!.text = getString(R.string.remain).plus("${millisUntilFinished/1000}")
@@ -121,24 +115,40 @@ class game_guess : AppCompatActivity() {
 
     }
 
+
     fun new_picture(){
-        Log.e("game_guess","2-2")
-        new_request()
-        Log.e("game_guess","2-3")
+        GlobalScope.launch(Dispatchers.Main) {
+            val job1 = async{
+                new_request()
+                Thread.sleep(500)
+            }
+            job1.await()
+
+            val job2 = async{
+                downloadImage()
+            }
+            job2.await()
+        }
     }
 
     fun new_request(){
-        Log.e("game_guess","2-4")
         val json = JSONObject()
-        Log.e("game_guess","2-5")
         json.put("account",account)
-        Log.e("game_guess",account)
+        Log.e("debug",account)
 
         jsonobject = JsonObjectRequest(
                 Request.Method.POST,strurl,json,
                 object: Response.Listener<JSONObject> {
                     override fun onResponse(response: JSONObject?) {
                         Log.e("debug",response.toString())
+                        val str = response.toString()
+                        val list  = str.split("\"")
+                        val player_id = list[3]
+                        subject = list[9]
+
+                        title = player_id + "_" + subject
+                        Log.e("debug",title)
+
 
                     }
                 },
@@ -150,9 +160,7 @@ class game_guess : AppCompatActivity() {
                     }
                 }
         )
-        Log.e("game_guess","5")
         Volley.newRequestQueue(this).add(jsonobject)
-        Log.e("game_guess","5-1")
     }
 
     fun downloadImage(){

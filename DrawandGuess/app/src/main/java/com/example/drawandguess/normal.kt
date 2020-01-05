@@ -111,6 +111,7 @@ class normal : AppCompatActivity() {
                 Request.Method.POST,strurl,
                 object: Response.Listener<JSONObject> {
                     override fun onResponse(response: JSONObject?) {
+                        Log.e("debug",response.toString())
                         val str = response.toString()
                         val list  = str.split("\"")
                         val player_id = list[3]

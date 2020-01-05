@@ -23,6 +23,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.creat.*
 import kotlinx.android.synthetic.main.game.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -116,7 +117,11 @@ class connect : AppCompatActivity() {
                         saveClickHandler(title)
                     }
                 }
+                .setNegativeButton("cancel") { dia, _ ->
+                    dia.dismiss()
+                }
                 .show()
+                .setCanceledOnTouchOutside(false)
     }
 
     var size = 10
@@ -181,6 +186,7 @@ class connect : AppCompatActivity() {
                     dialog.dismiss()
                 }
                 .show()
+                .setCanceledOnTouchOutside(false)
     }
 
     private fun checkWritable(): Boolean {
