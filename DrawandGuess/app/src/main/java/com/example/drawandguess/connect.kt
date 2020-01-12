@@ -199,7 +199,6 @@ class connect : AppCompatActivity() {
     }
 
     fun new_request(name:String?){
-
             val json = JSONObject()
             json.put("account",account)
             json.put("subject",name)

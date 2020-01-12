@@ -36,7 +36,7 @@ class game : AppCompatActivity() {
 
     private lateinit var color_list: List<String>
     // 跟後端連結的宣告
-    private  val strurl = "http://140.136.149.224:3000/subject"
+    private  val strurl = "http://140.136.149.224:3000/draw/subject"
     private var account:String?=null
     private var info :TextView?=null
     var title :String?= null
@@ -57,7 +57,7 @@ class game : AppCompatActivity() {
     fun clock()
     {
         info = findViewById(R.id.info)
-        object : CountDownTimer(180000, 1000) {
+        object : CountDownTimer(60000, 1000) {
 
             override fun onFinish() {
                 info!!.text = getString(R.string.done)

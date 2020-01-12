@@ -68,7 +68,7 @@ class game_guess : AppCompatActivity() {
     {
         info = findViewById(R.id.info)
         account = intent.getStringExtra("account")
-        object : CountDownTimer(30000, 1000) {
+        object : CountDownTimer(60000, 1000) {
             override fun onFinish() {
                 info!!.text = getString(R.string.done)
                 android.app.AlertDialog.Builder(this@game_guess)
@@ -144,7 +144,7 @@ class game_guess : AppCompatActivity() {
                         val str = response.toString()
                         val list  = str.split("\"")
                         val player_id = list[3]
-                        subject = list[9]
+                        subject = list[7]
 
                         title = player_id + "_" + subject
                         Log.e("debug",title)
